@@ -9,8 +9,8 @@ import java.sql.ResultSet;
 public class App extends JFrame {
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost:3306/BloodBank";
-    static final String USER = "pradyumna";
-    static final String PASS = "Ferrari@2004";
+    static final String USER = "USERNAME";
+    static final String PASS = "PASSWORD";
 
     public App() {
         super("Blood Bank Management System");
