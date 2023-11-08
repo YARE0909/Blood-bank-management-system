@@ -9,8 +9,8 @@ import java.sql.ResultSet;
 public class App extends JFrame {
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost:3306/BloodBank";
-    static final String USER = "USERNAME";
-    static final String PASS = "PASSWORD";
+    static final String USER = "pradyumna";
+    static final String PASS = "Ferrari@2004";
 
     public App() {
         super("Blood Bank Management System");
@@ -42,6 +42,10 @@ public class App extends JFrame {
         addButton.setBounds(10, 80, 120, 25);
         addDonorPanel.add(addButton);
 
+        JTextArea resultAreaAddDonor = new JTextArea();
+        resultAreaAddDonor.setBounds(10, 110, 300, 150);
+        addDonorPanel.add(resultAreaAddDonor);
+
         // Check Availability Form
         JLabel checkBloodGroupLabel = new JLabel("Blood Group:");
         checkBloodGroupLabel.setBounds(10, 20, 80, 25);
@@ -64,7 +68,7 @@ public class App extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String name = nameText.getText();
                 String bloodGroup = bloodGroupText.getText();
-                addDonor(name, bloodGroup);
+                addDonor(name, bloodGroup, resultAreaAddDonor);
             }
         });
 
@@ -83,7 +87,7 @@ public class App extends JFrame {
         setVisible(true);
     }
 
-    private void addDonor(String name, String bloodGroup) {
+    private void addDonor(String name, String bloodGroup, JTextArea resultAreaAddDonor) {
         Connection conn = null;
         PreparedStatement pstmt = null;
         try {
@@ -95,14 +99,19 @@ public class App extends JFrame {
             pstmt.setString(2, bloodGroup);
             int rowsInserted = pstmt.executeUpdate();
             if (rowsInserted > 0) {
+                resultAreaAddDonor.append("Donor added successfully!");
+                resultAreaAddDonor.append("\nName: " + name);
+                resultAreaAddDonor.append("\nBloog Group: " + bloodGroup);
                 System.out.println("A new donor was added successfully!");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             try {
-                if (pstmt != null) pstmt.close();
-                if (conn != null) conn.close();
+                if (pstmt != null)
+                    pstmt.close();
+                if (conn != null)
+                    conn.close();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -129,9 +138,12 @@ public class App extends JFrame {
             ex.printStackTrace();
         } finally {
             try {
-                if (rs != null) rs.close();
-                if (pstmt != null) pstmt.close();
-                if (conn != null) conn.close();
+                if (rs != null)
+                    rs.close();
+                if (pstmt != null)
+                    pstmt.close();
+                if (conn != null)
+                    conn.close();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
