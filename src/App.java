@@ -9,12 +9,12 @@ import java.sql.ResultSet;
 public class App extends JFrame {
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost:3306/BloodBank";
-    static final String USER = "USERNAME";
-    static final String PASS = "PASSWORD";
+    static final String USER = "YOUR_SQL_USERNAME";
+    static final String PASS = "YOUR_SQL_PASSWORD";
 
     public App() {
         super("Blood Bank Management System");
-        setSize(400, 300);
+        setSize(700,500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JTabbedPane tabbedPane = new JTabbedPane();
@@ -43,7 +43,7 @@ public class App extends JFrame {
         addDonorPanel.add(addButton);
 
         JTextArea resultAreaAddDonor = new JTextArea();
-        resultAreaAddDonor.setBounds(10, 110, 300, 150);
+        resultAreaAddDonor.setBounds(10, 110, 700, 300);
         addDonorPanel.add(resultAreaAddDonor);
 
         // Check Availability Form
@@ -101,7 +101,7 @@ public class App extends JFrame {
             if (rowsInserted > 0) {
                 resultAreaAddDonor.append("Donor added successfully!");
                 resultAreaAddDonor.append("\nName: " + name);
-                resultAreaAddDonor.append("\nBloog Group: " + bloodGroup);
+                resultAreaAddDonor.append("\nBlood Group: " + bloodGroup);
                 System.out.println("A new donor was added successfully!");
             }
         } catch (Exception ex) {
